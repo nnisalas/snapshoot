@@ -1,0 +1,10 @@
+{
+  "name": "snapshoot",
+  "version": "1.0.0",
+  "description": "Snapshoot — a portable K-pop style photobooth. Pick a frame, snap four photos, filter, caption, and share.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

@@ -1,4 +1,5 @@
 import { App } from './app.js';
+import { initPressStates } from './press-states.js';
 
 const STAGE_W = 390;
 const STAGE_H = 844;
@@ -17,5 +18,6 @@ window.addEventListener('orientationchange', fitStage);
 fitStage();
 
 const app = new App(stageEl);
+initPressStates();
 
 window.addEventListener('pagehide', () => app.stopCamera());

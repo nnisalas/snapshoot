@@ -74,8 +74,16 @@ button {
   transition: background 0.25s ease, transform 0.15s ease-in-out;
   z-index: 20;
 }
-.btn-primary:hover { background: #219079; }
-.btn-primary:active { transform: scale(0.97); background: #1f8570; }
+/* :hover only for devices that actually have a pointer that can hover
+   (mice/trackpads) — on touch, :hover has no real "unhover" moment, so it
+   can visually stick after a tap and be mistaken for a broken press state. */
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover { background: #219079; }
+}
+/* :active alone is unreliable on touch (iOS Safari won't apply :active on
+   tap at all without a touch listener present); .pressed is toggled by JS
+   (src/press-states.js) via pointer events for consistent feedback everywhere. */
+.btn-primary:active, .btn-primary.pressed { transform: scale(0.97); background: #1f8570; }
 
 /* ---- Image (PNG wordmark) buttons ---- */
 .btn-image {
@@ -88,7 +96,7 @@ button {
   cursor: pointer;
   transition: transform 0.15s ease;
 }
-.btn-image:active { transform: scale(0.98); }
+.btn-image:active, .btn-image.pressed { transform: scale(0.98); }
 .btn-image img {
   width: 100%;
   height: 100%;
@@ -256,7 +264,7 @@ video.live-video {
   cursor: pointer;
   z-index: 8;
 }
-.cam-fallback:active { background: rgba(0, 0, 0, 0.7); }
+.cam-fallback:active, .cam-fallback.pressed { background: rgba(0, 0, 0, 0.7); }
 .cam-fallback img { width: 48px; height: 48px; }
 
 .shutter-btn {
@@ -273,7 +281,7 @@ video.live-video {
   cursor: pointer;
   transition: transform 0.12s ease;
 }
-.shutter-btn:active { transform: scale(0.94); }
+.shutter-btn:active, .shutter-btn.pressed { transform: scale(0.94); }
 .shutter-btn img { width: 100%; height: 100%; display: block; }
 
 /* ---- Filter circles ---- */

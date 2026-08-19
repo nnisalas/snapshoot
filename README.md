@@ -42,7 +42,8 @@ Flow: `welcome → how → frame → capture → filter → caption → done`
 5. **Filter** — apply one of 7 filters to all four photos at once.
 6. **Add Caption** — type a caption (40 chars max).
 7. **Your Snapshoot** — preview the finished strip with date + caption
-   burned in, then Download & Share (downloads a PNG) or Take Another
+   burned in, then Download & Share (native share sheet where supported —
+   e.g. "Save to Photos" on mobile — otherwise downloads a PNG) or Take Another
    (returns to Frame Theme so you can pick a new frame).
 
 Nothing is uploaded or stored anywhere — photos live only in memory for the

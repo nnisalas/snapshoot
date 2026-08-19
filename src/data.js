@@ -3,7 +3,7 @@
 export const THEMES = [
   {
     name: 'Deja Vu',
-    icon: 'assets/theme-icon-dejavu.png',
+    icon: 'assets/theme-icon-dejavu.svg',
     file: 'assets/frame-theme1.svg',
     footerColor: '#ffffff',
     // Eight decorations that overlap the photo slots in the design (camera,

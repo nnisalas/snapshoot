@@ -268,14 +268,37 @@ export class App {
       const tx = 30 * SO;
       ctx.fillText(this.state.date, tx, 470 * SO);
       if (this.state.caption) ctx.fillText(this.state.caption, tx, 497 * SO);
-      const url = c.toDataURL('image/png');
 
+      const blob = await new Promise((resolve) => c.toBlob(resolve, 'image/png'));
+      if (!blob) throw new Error('canvas export produced no data');
+
+      // Prefer the native share sheet (Save to Photos/Camera Roll is one tap
+      // away there, on both iOS and Android) — a browser can never write to
+      // the photo library directly, so this is the closest thing to it.
+      const file = new File([blob], 'snapshoot.png', { type: 'image/png' });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({ files: [file], title: 'Snapshoot' });
+          return;
+        } catch (e) {
+          if (e && e.name === 'AbortError') return; // user cancelled the share sheet
+          // fall through to download below
+        }
+      }
+
+      // Fallback: a real download. Blob URLs (not raw data: URIs) are what's
+      // reliable here — some mobile browsers silently fail to save large
+      // data: URI downloads. This lands in Downloads, not the camera roll;
+      // there's no way for a web page to write to the photo library without
+      // the share sheet above.
+      const blobUrl = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = url;
+      a.href = blobUrl;
       a.download = 'snapshoot.png';
       document.body.appendChild(a);
       a.click();
       a.remove();
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 10000);
       this.showToast('Saved to your device!');
     } catch (e) {
       console.warn('export failed', e);

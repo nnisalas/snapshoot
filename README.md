@@ -81,12 +81,23 @@ at an image in `assets/` — that's it for a simple frame. Two things to know:
   cover it) — that's correct for the empty-slot placeholder look, but it
   means any decoration drawn to intentionally stick out over a slot (e.g. a
   star poking over a corner) gets covered once that slot is filled. Fix:
-  export that decoration separately as a transparent-background image at the
-  same canvas size and position, and add it as `overlay` on the `data.js`
-  entry. It gets composited above the photos/video everywhere — capture,
+  add `overlay` on the `data.js` entry, in either shape:
+  - **One full-canvas image** (`overlay: 'assets/foo-overlay.svg'`) — a
+    single transparent-background image at the same 343×563 canvas size,
+    containing just the overlapping decorations, composited as-is.
+  - **Several individually-positioned pieces**
+    (`overlay: [{ src, left, top, w, h, rotate? }, ...]`) — for a design
+    with multiple small decorations (stars, tags, etc.) scattered across
+    the frame instead of one pre-merged image. Each piece is its own small
+    file (avoids merging unrelated SVGs — and their `<defs>`/filter IDs —
+    into one document); `left`/`top`/`w`/`h`/`rotate` (degrees, optional)
+    are in native 343×563 units, measured from wherever the decoration
+    sits in the reference design.
+
+  Either shape is composited above the photos/video everywhere — capture,
   filter, caption, done, and the final export — automatically; no other
-  code changes needed. Frames
-  without overlapping decorations can just omit `overlay`.
+  code changes needed. Frames without overlapping decorations just omit
+  `overlay` entirely.
 
 ## Notes on the implementation
 

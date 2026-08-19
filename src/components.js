@@ -1,5 +1,32 @@
 import { h, px } from './dom.js';
-import { slotRect } from './geometry.js';
+import { slotRect, NATIVE_W } from './geometry.js';
+
+/**
+ * Decorations that overlap the photo slots, composited above the photos.
+ * `overlay` is either:
+ *   - a single full-canvas transparent image (string src), or
+ *   - an array of individually-positioned pieces: { src, left, top, w, h, rotate? }
+ *     in native 343x563 units, each its own small image (avoids having to
+ *     merge multiple source SVGs into one file).
+ * Returns DOM nodes scaled to whatever `dispW` a given screen displays at.
+ */
+export function overlayNodes(overlay, dispW) {
+  if (!overlay) return [];
+  if (typeof overlay === 'string') {
+    return [h('img', { class: 'frame-overlay', src: overlay, alt: '' })];
+  }
+  const sc = dispW / NATIVE_W;
+  return overlay.map((p) => {
+    const style = {
+      left: px(p.left * sc),
+      top: px(p.top * sc),
+      width: px(p.w * sc),
+      height: px(p.h * sc),
+    };
+    if (p.rotate) style.transform = `rotate(${p.rotate}deg)`;
+    return h('img', { class: 'frame-overlay-piece', src: p.src, alt: '', style });
+  });
+}
 
 /** The recurring bottom-pinned teal pill button (welcome / how / frame). */
 export function primaryButton(label, onClick) {
@@ -41,7 +68,7 @@ export function titleWithClovers({ top, titleSrc, titleAlt, titleW, cloverTL, cl
 }
 
 /** A static (non-live) frame preview showing the frame art + captured photos. */
-export function framePreview({ left, top, w, h: hgt, frameSrc, photos, dispW, filterCss, overlaySrc }) {
+export function framePreview({ left, top, w, h: hgt, frameSrc, photos, dispW, filterCss, overlay }) {
   const container = h('div', {
     class: 'frame-preview',
     style: { left: px(left), top: px(top), width: px(w), height: px(hgt) },
@@ -68,8 +95,6 @@ export function framePreview({ left, top, w, h: hgt, frameSrc, photos, dispW, fi
   // Decorations that overlap the photo slots (e.g. stars poking over a
   // corner) live in a separate transparent layer so they stay visible on
   // top of captured photos instead of getting covered.
-  if (overlaySrc) {
-    container.appendChild(h('img', { class: 'frame-overlay', src: overlaySrc, alt: '' }));
-  }
+  overlayNodes(overlay, dispW).forEach((node) => container.appendChild(node));
   return container;
 }

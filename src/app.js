@@ -242,10 +242,25 @@ export class App {
         ctx.restore();
       }
       ctx.filter = 'none';
-      const overlaySrc = this.frameOverlay();
-      if (overlaySrc) {
-        const overlayImg = await this.loadImg(overlaySrc);
+      const overlay = this.frameOverlay();
+      if (typeof overlay === 'string') {
+        const overlayImg = await this.loadImg(overlay);
         ctx.drawImage(overlayImg, 0, 0, OW, OH);
+      } else if (Array.isArray(overlay)) {
+        for (const p of overlay) {
+          const pieceImg = await this.loadImg(p.src);
+          const w = p.w * SO, h = p.h * SO;
+          ctx.save();
+          if (p.rotate) {
+            const cx = (p.left + p.w / 2) * SO, cy = (p.top + p.h / 2) * SO;
+            ctx.translate(cx, cy);
+            ctx.rotate((p.rotate * Math.PI) / 180);
+            ctx.drawImage(pieceImg, -w / 2, -h / 2, w, h);
+          } else {
+            ctx.drawImage(pieceImg, p.left * SO, p.top * SO, w, h);
+          }
+          ctx.restore();
+        }
       }
       try { await document.fonts.load(`${19 * SO}px Pangolin`); } catch {}
       ctx.fillStyle = this.captionColor();

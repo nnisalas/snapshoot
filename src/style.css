@@ -214,6 +214,15 @@ video.live-video {
   z-index: 6;
 }
 
+/* Same idea, but for a frame whose overlapping decorations are several
+   individually-positioned pieces instead of one full-canvas image. */
+.frame-overlay-piece {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  z-index: 6;
+}
+
 .countdown-overlay {
   position: absolute;
   display: flex;

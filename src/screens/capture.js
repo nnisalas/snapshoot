@@ -1,5 +1,5 @@
 import { h, px } from '../dom.js';
-import { titleWithClovers } from '../components.js';
+import { titleWithClovers, overlayNodes } from '../components.js';
 
 function videoStyleFor(app) {
   const s = app.state;
@@ -34,12 +34,9 @@ export const captureScreen = {
     });
     video.setAttribute('playsinline', '');
 
-    const overlaySrc = app.frameOverlay();
     // Decorations that overlap the photo slots — kept above the photos and
     // live video, same as the static frame previews on later screens.
-    const frameOverlay = overlaySrc
-      ? h('img', { class: 'frame-overlay', src: overlaySrc, alt: '' })
-      : null;
+    const frameOverlayNodes = overlayNodes(app.frameOverlay(), 300);
 
     const countdownOverlay = h('div', { class: 'countdown-overlay', style: { display: 'none' } });
 
@@ -58,7 +55,7 @@ export const captureScreen = {
           borderRadius: px(8), overflow: 'hidden',
         },
       },
-      frameArt, photosLayer, video, frameOverlay, countdownOverlay, camFallback
+      frameArt, photosLayer, video, frameOverlayNodes, countdownOverlay, camFallback
     );
 
     const shutter = h(

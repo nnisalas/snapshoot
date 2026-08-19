@@ -11,7 +11,7 @@ export const doneScreen = {
       photos: s.photos,
       dispW: 240,
       filterCss: app.filterCss(),
-      overlaySrc: app.frameOverlay(),
+      overlay: app.frameOverlay(),
     });
     preview.appendChild(
       h(

@@ -1,7 +1,26 @@
 // Static design data ported verbatim from the design handoff (Snapshoot.dc.html).
 
 export const THEMES = [
-  { name: 'Theme 1', icon: 'assets/theme-icon1.svg', file: 'assets/frame-theme1.svg', footerColor: '#ffffff' },
+  {
+    name: 'Deja Vu',
+    icon: 'assets/theme-icon-dejavu.png',
+    file: 'assets/frame-theme1.svg',
+    footerColor: '#ffffff',
+    // Eight decorations that overlap the photo slots in the design (camera,
+    // tag, speech bubble, two sparkle stars, three shooting-star trails) —
+    // each its own small file, positioned individually and composited above
+    // the photos so none of them get covered once a slot is filled.
+    overlay: [
+      { src: 'assets/camera.svg', left: 6, top: 54, w: 96, h: 64 },
+      { src: 'assets/tag-till-we-meet.svg', left: 2, top: 251, w: 112, h: 21 },
+      { src: 'assets/bubble-nostalgia.svg', left: 274, top: 243, w: 69, h: 47 },
+      { src: 'assets/star-blue-sparkle.svg', left: 6, top: 376, w: 64, h: 68, rotate: -20 },
+      { src: 'assets/star-yellow-sparkle.svg', left: 14, top: 430, w: 57, h: 57, rotate: -15 },
+      { src: 'assets/shooting-blue.svg', left: 213, top: 408, w: 79, h: 98 },
+      { src: 'assets/shooting-yellow.svg', left: 282, top: 402, w: 78, h: 98 },
+      { src: 'assets/shooting-green.svg', left: 252, top: 434, w: 79, h: 98 },
+    ],
+  },
   { name: 'Theme 2', icon: 'assets/theme-icon2.svg', file: 'assets/frame-theme2.svg', footerColor: '#ffffff' },
   {
     name: 'Blackpink',

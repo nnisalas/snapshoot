@@ -21,7 +21,7 @@ export const captionScreen = {
         photos: s.photos,
         dispW: 240,
         filterCss: app.filterCss(),
-        overlaySrc: app.frameOverlay(),
+        overlay: app.frameOverlay(),
       }),
       h('div', { class: 'caption-label', style: { top: px(576), left: px(75) } }, 'Caption'),
       h('input', {

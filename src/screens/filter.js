@@ -38,7 +38,7 @@ export const filterScreen = {
         photos: s.photos,
         dispW: 240,
         filterCss: app.filterCss(),
-        overlaySrc: app.frameOverlay(),
+        overlay: app.frameOverlay(),
       }),
       h('div', { class: 'filter-name', style: { top: px(590) } }, app.filterName()),
       // Constrained + centered (icons peek at the right edge to hint it scrolls),

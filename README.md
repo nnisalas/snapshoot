@@ -35,7 +35,7 @@ Flow: `welcome → how → frame → capture → filter → caption → done`
 
 1. **Welcome** — landing screen.
 2. **How it Works** — explains the 4 steps.
-3. **Frame Theme** — pick a frame color (7) or themed frame (2).
+3. **Frame Theme** — pick a frame color (7) or themed frame (3).
 4. **Snapshoot** — tap the shutter; a 5-second countdown runs for each of
    4 photos, mirrored live preview, auto-advances to Filter once all 4 are
    captured.

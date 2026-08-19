@@ -215,7 +215,7 @@ export class App {
 
   captionColor() {
     const s = this.state;
-    const bg = s.tab === 'theme' ? '#ffffff' : COLORS[s.color].hex;
+    const bg = s.tab === 'theme' ? THEMES[s.theme].footerColor || '#ffffff' : COLORS[s.color].hex;
     return this._lum(bg) > 0.4 ? '#1a1a1a' : '#ffffff';
   }
 

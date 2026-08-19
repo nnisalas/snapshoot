@@ -1,8 +1,20 @@
 // Static design data ported verbatim from the design handoff (Snapshoot.dc.html).
 
 export const THEMES = [
-  { name: 'Theme 1', icon: 'assets/theme-icon1.svg', file: 'assets/frame-theme1.svg' },
-  { name: 'Theme 2', icon: 'assets/theme-icon2.svg', file: 'assets/frame-theme2.svg' },
+  { name: 'Theme 1', icon: 'assets/theme-icon1.svg', file: 'assets/frame-theme1.svg', footerColor: '#ffffff' },
+  { name: 'Theme 2', icon: 'assets/theme-icon2.svg', file: 'assets/frame-theme2.svg', footerColor: '#ffffff' },
+  {
+    name: 'Blackpink',
+    icon: 'assets/theme-icon-blackpink.svg',
+    file: 'assets/frame-blackpink.svg',
+    // Card background is near-black, so the caption/date text needs to
+    // stay white instead of the light-frame default (see captionColor()).
+    footerColor: '#0F0F0F',
+    // Three squiggle doodles that overlap the slot dividers in the design —
+    // kept out of the frame art itself and composited above photos instead,
+    // so they don't get covered once a slot is filled.
+    overlay: 'assets/frame-blackpink-overlay.svg',
+  },
 ];
 
 export const COLORS = [

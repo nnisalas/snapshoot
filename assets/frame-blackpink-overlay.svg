@@ -1,0 +1,22 @@
+<svg width="343" height="563" viewBox="0 0 343 563" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Decorations that overlap the photo slots in the reference mockup (the
+     frame background purposely omits these three so they can sit above
+     captured photos instead of getting covered). Positions measured from
+     the reference screenshot; each vector's own size already matches its
+     measured footprint almost exactly, so no scaling is applied. -->
+
+<!-- left-middle squiggle, straddles the slot0/slot2 row divider -->
+<g transform="translate(0, 238.97)">
+<path d="M-3 22.3459C6.22034 16.7343 23.278 4.70875 17.7458 1.49918C10.8305 -2.51277 3.05085 18.8715 11.6949 22.3459C20.339 25.8204 40.2203 14.528 38.4915 10.1849C36.7627 5.84185 23.7966 11.9221 31.5763 19.7397C37.8 25.9937 45.1186 21.7664 48 18.8711" stroke="#FFC2EC" stroke-width="2" stroke-linecap="round"/>
+</g>
+
+<!-- right-middle squiggle, straddles the slot1/slot3 row divider -->
+<g transform="translate(306.87, 229.73)">
+<path d="M19.3301 51.95C15.1494 41.9988 5.78925 23.345 1.794 28.3394C-3.20005 34.5825 16.7924 45.4504 21.5115 37.4179C26.2307 29.3854 18.0147 8.04797 13.4631 9.11291C8.91156 10.1779 12.9997 23.9029 21.8855 17.3699C28.9941 12.1435 25.9001 4.27846 23.4646 0.999216" stroke="#FFC2EC" stroke-width="2" stroke-linecap="round"/>
+</g>
+
+<!-- bottom-right squiggle, over the bottom-right corner of slot3 -->
+<g transform="translate(288.68, 426.93)">
+<path d="M1.00086 10.4978C11.7917 10.2482 32.5768 8.36257 29.3906 2.81691C25.4078 -4.11518 7.97828 10.5143 13.727 17.8453C19.4758 25.1763 42.3397 25.3375 43.0141 20.7119C43.6884 16.0862 29.4193 14.8689 32.2479 25.5289C34.5108 34.0569 42.9626 34.0553 46.9056 32.9885" stroke="#FFC2EC" stroke-width="2" stroke-linecap="round"/>
+</g>
+</svg>
